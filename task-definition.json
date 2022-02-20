@@ -1,0 +1,37 @@
+{
+  "family": "wordpress-dev-ecs",
+  "executionRoleArn": "arn:aws:iam::057632058329:role/wordpress-dev-ecs-exec",
+  "containerDefinitions": [
+      {
+          "name": "wordpress-dev-ecs",
+          "image": "connecttesth.jfrog.io/docker/wordpress:latest",
+          "repositoryCredentials": {
+            "credentialsParameter": "arn:aws:secretsmanager:us-east-1:057632058329:secret:jfrog-secret-wKbEe2"
+        },
+          "cpu": 512,
+          "portMappings": [
+            {
+              "hostPort": 80,
+              "protocol": "tcp",
+              "containerPort": 80
+            }
+          ],
+          "memory": 1024,
+          "essential": true,
+          "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+              "awslogs-group": "wordpress-dev-ecs",
+              "awslogs-region": "us-east-1",
+              "awslogs-stream-prefix": "dev"
+            }
+          }
+      }
+  ],
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "networkMode": "awsvpc",
+  "cpu": "1024",
+  "memory": "2048"
+}
