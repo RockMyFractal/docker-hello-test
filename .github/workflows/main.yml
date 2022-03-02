@@ -22,6 +22,7 @@ jobs:
           username: ${{ secrets.JFROG_USERNAME }}
           password: ${{ secrets.JFROG_PASSWORD }}
       - name: docker build
+#Troubleshooting
         run: |
           docker build . --file dockerfile --tag connecttesth.jfrog.io/dockerrock-virtual/wordpress:latest
       - name: docker push
