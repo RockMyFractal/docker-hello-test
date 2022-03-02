@@ -27,7 +27,7 @@ jobs:
           docker build . --file dockerfile --tag connecttesth.jfrog.io/dockerrock-virtual/wordpress:latest
       - name: docker push
         run: |
-          docker push connecttesth.jfrog.io/dockerrock-virtual/wordpress:latest --log-level debug
+          docker -l debug push connecttesth.jfrog.io/dockerrock-virtual/wordpress:latest
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
